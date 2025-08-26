@@ -14,7 +14,7 @@ def jeju_news():
 
     root = ET.fromstring(content)
     
-    for item in root.findall('./channel/item'):
+    for item in root.findall('./channel/item')[:5]:
         title = item.find('title').text
         where = '제주일보'
         link = item.find('link').text
@@ -39,7 +39,7 @@ def jemin_news():
 
     root = ET.fromstring(content)
     
-    for item in root.findall('./channel/item'):
+    for item in root.findall('./channel/item')[:5]:
         title = item.find('title').text
         where = '제민일보'
         link = item.find('link').text
@@ -65,7 +65,7 @@ def omai_news():
 
     root = ET.fromstring(content)
     for item in root.findall('./channel/item')[:5]:
-        title = item.find('title').text
+        title = item.find('title').text.replace("<br>","").replace("<BR>","")
         where = '오마이'
         link = item.find('link').text
         
@@ -78,3 +78,5 @@ def omai_news():
         crad_list.append(crad)
     return crad_list
     
+    
+print(omai_news())
